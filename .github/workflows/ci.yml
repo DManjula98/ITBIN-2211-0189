@@ -1,27 +1,24 @@
-name: CI/CD Pipeline
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]  # Matrix for Node.js versions
+        node-version: [12.x, 14.x, 16.x]  # Define the Node.js versions for testing
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
+      - run: npm install
+      - run: npm test
