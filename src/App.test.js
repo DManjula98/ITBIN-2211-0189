@@ -11,7 +11,9 @@ import {
 } from "firebase/firestore";
 import "./App.css";
 import { FiTrash2, FiEdit2, FiCheck, FiX } from "react-icons/fi";
-import LoginRegister from "./LoginRegister";
+import Login from "./Login";
+import Register from "./Register";
+
 
 function App() {
   const [user, setUser] = useState(null);
