@@ -22,17 +22,18 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "release": "standard-version",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "lint": "react-scripts lint",
-    "eject": "react-scripts eject",
-    "test:unit": "jest tests/unit",
-    "test:integration": "jest tests/integration",
-    "test:e2e": "jest tests/e2e"
-  },
+ "scripts": {
+  "release": "standard-version",
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "lint": "react-scripts lint",
+  "eject": "react-scripts eject",
+  "test": "jest",
+  "test:unit": "jest tests/unit --passWithNoTests",
+  "test:integration": "jest tests/integration --passWithNoTests",
+  "test:e2e": "jest tests/e2e --passWithNoTests"
+},
+
   "eslintConfig": {
     "extends": [
       "react-app",

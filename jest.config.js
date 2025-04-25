@@ -1,4 +1,5 @@
 module.exports = {
+   maxWorkers: "50%",
     collectCoverage: true,
     coverageThreshold: {
       global: {
