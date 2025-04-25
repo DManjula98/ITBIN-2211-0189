@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "./Firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -9,10 +9,10 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import "./App.css";
 import { FiTrash2, FiEdit2, FiCheck, FiX } from "react-icons/fi";
 import Login from "./Login";
 import Register from "./Register";
-import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -22,11 +22,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
 
+  // Handle auth state changes and cleanup when component unmounts
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    return unsubscribe;
+
+    return () => unsubscribeAuth(); // Cleanup function for auth state changes
   }, []);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function App() {
       }));
       setTodos(tasks);
     });
-    return () => unsubscribe();
+    return () => unsubscribe(); // Cleanup function for snapshot listener
   }, [user]);
 
   const addTodo = async () => {
